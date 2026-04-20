@@ -1,7 +1,5 @@
 const Listing = require("../models/listing");
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapToken = process.env.MAP_TOKEN;
-const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+
 
 module.exports.index = async (req, res, next) => {
   let allListing = await Listing.find().sort({ _id: -1 });
@@ -13,18 +11,21 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createListing = async (req, res, next) => {
-  let response = await geocodingClient
-    .forwardGeocode({
-      query: `${req.body.listing.location},${req.body.listing.country}`,
-      limit: 1,
-    })
-    .send();
+  const query = `${req.body.listing.location}, ${req.body.listing.country}`;
+  const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
+    headers: { "User-Agent": "AirbnbProjectClone/1.0" }
+  });
+  const data = await response.json();
+  let geometry = { type: "Point", coordinates: [0, 0] };
+  if (data && data.length > 0) {
+    geometry.coordinates = [parseFloat(data[0].lon), parseFloat(data[0].lat)];
+  }
   let url = req.file.path;
   let filename = req.file.filename;
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
-  newListing.geometry = response.body.features[0].geometry;
+  newListing.geometry = geometry;
   await newListing.save();
   req.flash("success", "New Listing Created!");
   res.redirect("/listings");
@@ -58,16 +59,19 @@ module.exports.renderEditForm = async (req, res, next) => {
 
 module.exports.updateListing = async (req, res, next) => {
   let { id } = req.params;
-  let response = await geocodingClient
-    .forwardGeocode({
-      query: `${req.body.listing.location},${req.body.listing.country}`,
-      limit: 1,
-    })
-    .send();
+  const query = `${req.body.listing.location}, ${req.body.listing.country}`;
+  const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
+    headers: { "User-Agent": "AirbnbProjectClone/1.0" }
+  });
+  const data = await response.json();
+  let geometry = { type: "Point", coordinates: [0, 0] };
+  if (data && data.length > 0) {
+    geometry.coordinates = [parseFloat(data[0].lon), parseFloat(data[0].lat)];
+  }
   let updateListing = req.body.listing;
   let listing = await Listing.findByIdAndUpdate(id, updateListing);
 
-  listing.geometry = response.body.features[0].geometry;
+  listing.geometry = geometry;
   await listing.save();
 
   if (typeof req.file != "undefined") {

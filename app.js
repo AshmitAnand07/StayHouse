@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV != "production") {
-  require("dotenv").config();
-}
+require("dotenv").config();
 
 const express = require("express");
 const app = express();
@@ -22,18 +20,29 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/Airbnb";
 const DB_URL = process.env.ATLASDB_URL;
-main()
-  .then(() => {
-    console.log("connected to DB");
-  })
-  .catch((err) => console.log(err));
 
-async function main() {
-  // await mongoose.connect(MONGO_URL);
-  await mongoose.connect(DB_URL);
+if (!DB_URL) {
+  console.error("❌ Missing MongoDB connection string in .env (ATLASDB_URL)");
+  process.exit(1);
 }
+
+mongoose.connection.on("connected", () => {
+  console.log("✅ MongoDB Connected Successfully");
+});
+
+mongoose.connection.on("error", (err) => {
+  console.log("❌ MongoDB Connection Error:", err);
+});
+
+mongoose.connect(DB_URL)
+  .then(() => {
+    console.log("✅ Mongoose connect() resolved — DB ready.");
+  })
+  .catch((err) => {
+    console.error("❌ Failed to connect to MongoDB:", err);
+    process.exit(1);
+  });
 
 app.listen(8080, () => {
   console.log("server is listening to port 8080");

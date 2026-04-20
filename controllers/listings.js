@@ -2,7 +2,13 @@ const Listing = require("../models/listing");
 
 
 module.exports.index = async (req, res, next) => {
-  let allListing = await Listing.find().sort({ _id: -1 });
+  const { category } = req.query;
+  let allListing;
+  if (category) {
+    allListing = await Listing.find({ category: category }).sort({ _id: -1 });
+  } else {
+    allListing = await Listing.find().sort({ _id: -1 });
+  }
   res.render("listings/index.ejs", { allListing });
 };
 
@@ -96,14 +102,8 @@ module.exports.destroyListing = async (req, res, next) => {
 module.exports.filter = async (req, res, next) => {
   let { id } = req.params;
   let allListing = await Listing.find({ category: { $all: [id] } });
-  console.log(allListing);
-  if (allListing.length != 0) {
-    res.locals.success = `Listings Find by ${id}`;
-    res.render("listings/index.ejs", { allListing });
-  } else {
-    req.flash("error", "Listings is not here !!!");
-    res.redirect("/listings");
-  }
+  console.log(`Filter: ${id} → ${allListing.length} results`);
+  res.render("listings/index.ejs", { allListing });
 };
 
 module.exports.filterbtn = (req, res, next) => {

@@ -23,46 +23,46 @@
                     <p style="text-decoration: none;">ALL</p>
                 </div>
             </a>
-            <a href="/listings/filter/Beachfront">
-                <div class="filter Beachfront">
+            <a href="/listings/filter/Beach">
+                <div class="filter Beach">
                     <div><img src="/Icon/1.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>Beachfront</p>
+                    <p>Beach</p>
                 </div>
             </a>
-            <a href="/listings/filter/Cabins">
-                <div class="filter Cabins">
+            <a href="/listings/filter/Cabin">
+                <div class="filter Cabin">
                     <div><img src="/Icon/2.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>&nbsp;Cabins&nbsp;</p>
+                    <p>Cabin</p>
                 </div>
             </a>
-            <a href="/listings/filter/Omg">
-                <div class="filter OMG">
+            <a href="/listings/filter/Luxury">
+                <div class="filter Luxury">
                     <div><img src="/Icon/3.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>&nbsp;OMG!&nbsp;</p>
+                    <p>Luxury</p>
                 </div>
             </a>
             <a href="/listings/filter/Lake">
                 <div class="filter Lake">
                     <div><img src="/Icon/4.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>&nbsp;Lake&nbsp;</p>
+                    <p>Lake</p>
                 </div>
             </a>
             <a href="/listings/filter/Design">
                 <div class="filter Design">
                     <div><img src="/Icon/5.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>&nbsp;Design&nbsp;</p>
+                    <p>Design</p>
                 </div>
             </a>
-            <a href="/listings/filter/Amazing Pools">
-                <div class="filter Amazing-pools">
+            <a href="/listings/filter/Pool">
+                <div class="filter Pool">
                     <div><img src="/Icon/6.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>Amazing pools</p>
+                    <p>Pool</p>
                 </div>
             </a>
-            <a href="/listings/filter/Farms">
-                <div class="filter Farms">
+            <a href="/listings/filter/Farm">
+                <div class="filter Farm">
                     <div><img src="/Icon/7.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>&nbsp;Farms&nbsp;</p>
+                    <p>Farm</p>
                 </div>
             </a>
             <a href="/listings/filter/Amazing Views">
@@ -137,16 +137,16 @@
                     <p>Top of the world</p>
                 </div>
             </a>
-            <a href="/listings/filter/Luxe">
-                <div class="filter Luxe">
+            <a href="/listings/filter/Luxury">
+                <div class="filter Luxury">
                     <div><img src="/Icon/20.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>&nbsp;Luxe&nbsp;</p>
+                    <p>Luxury</p>
                 </div>
             </a>
-            <a href="/listings/filter/Iconic Cities">
-                <div class="filter Iconic-cities">
+            <a href="/listings/filter/City">
+                <div class="filter City">
                     <div><img src="/Icon/21.png" alt="icon" style="width: 25px; height: 25px;"></div>
-                    <p>Iconic cities</p>
+                    <p>City</p>
                 </div>
             </a>
             <a href="/listings/filter/Earth Homes">
@@ -188,6 +188,11 @@
         </div>
     </div>
     <div class="row row-cols-xxl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
+        <% if (allListing.length === 0) { %>
+            <div class="col-12 mt-5 text-center w-100">
+                <h4>No listings found for this category</h4>
+            </div>
+        <% } else { %>
         <% for (const listing of allListing) { %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
                 <div class="card col listing-card index-res">
@@ -221,6 +226,7 @@
                 </div>
     </div>
     </a>
+    <% } %>
     <% } %>
         </div>
         <script defer src="/js/filter.js"></script>

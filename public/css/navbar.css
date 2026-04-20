@@ -188,3 +188,87 @@
         height: 4.5rem;
     }
 }
+
+/* ----------------------------------------
+   New navbar right section
+---------------------------------------- */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
+    position: relative;
+}
+
+/* "Airbnb your home" pill button */
+.nav-host-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(128,128,128,0.4);
+    background: white;
+    color: #222;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: box-shadow 0.15s ease, background 0.15s ease;
+    cursor: pointer;
+}
+.nav-host-btn:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    background: #f7f7f7;
+    color: #222;
+}
+.nav-host-btn i {
+    color: #ff385c;
+    font-size: 0.9rem;
+}
+
+/* Login / Sign up inline auth buttons */
+.nav-auth-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease, background 0.15s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.nav-login-btn {
+    border: 1px solid rgba(128,128,128,0.4);
+    background: white;
+    color: #222;
+}
+.nav-login-btn:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    background: #f7f7f7;
+    color: #222;
+}
+.nav-signup-btn {
+    border: 1px solid #ff385c;
+    background: #ff385c;
+    color: white;
+}
+.nav-signup-btn:hover {
+    background: #e0314e;
+    color: white;
+    box-shadow: 0 2px 8px rgba(255,56,92,0.35);
+}
+
+/* Adjust .nav-user to live inside .nav-right */
+.nav-right .nav-user {
+    margin-right: 0;
+}
+
+@media (max-width: 767px) {
+    .nav-host-btn,
+    .nav-auth-btn {
+        display: none;
+    }
+}

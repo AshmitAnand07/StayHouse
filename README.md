@@ -36,7 +36,7 @@ Excited to share my journey of developing a feature-rich full-stack web applicat
 
 ### Maps
 
--   **Mapbox**: Platform for custom maps and location-based experiences.
+-   **Leaflet + OpenStreetMap**: Platform for custom maps and location-based experiences.
 
 ### Frontend
 
@@ -98,5 +98,3 @@ LinkedIn : www.linkedin.com/in/ashmit-anand-704898256/
 
 Thank you for exploring Airbnb! Your feedback is valuable. If you have any suggestions or thoughts, feel free to share them with us. 😊
 
----
-### Thanks for visit... 😊😊😊

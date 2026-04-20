@@ -1,13 +1,5 @@
 # Airbnb-Inspired Full-Stack Web Application 🚀
 
-<p align="center">
-  <b style="color: blue;  ">Visitor count</b>
-  <br>
-  <a style="" href="https://github.com/Rakhisan">
-  <img src="https://profile-counter.glitch.me/Airbnb--Project/count.svg" />
-  </a>
-</p>
-
 ---
 
 ## Table of Contents

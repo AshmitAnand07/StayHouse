@@ -53,7 +53,7 @@
 <!-- add on boilerplate -->
 
 
-<% if (typeof success !=='undefined' && success.length) { %>
+<% if (success && success.length > 0) { %>
     <div class="alert alert-success alert-dismissible fade show col-8 offset-2" role="alert">
 
         <%= success %>
@@ -63,7 +63,7 @@
     <% } %>
 
 
-        <% if (typeof error !=='undefined' && error.length) { %>
+        <% if (error && error.length > 0) { %>
             <div class="alert alert-danger fade show col-8 offset-2" role="alert">
 
                 <%= error %>

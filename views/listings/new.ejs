@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
   <div class="row mt-3">
-    <div class="col-8 offset-2">
+    <div class="col-12 col-md-8 offset-md-2">
       <h3>Create a New Listing</h3>
       <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data" >
 
@@ -36,6 +36,26 @@
           </div>
         </div>
 
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="listing[category]" class="form-select" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="trending">Trending</option>
+            <option value="rooms">Rooms</option>
+            <option value="iconic-cities">Iconic Cities</option>
+            <option value="mountains">Mountains</option>
+            <option value="castles">Castles</option>
+            <option value="amazing-pools">Amazing Pools</option>
+            <option value="camping">Camping</option>
+            <option value="farms">Farms</option>
+            <option value="arctic">Arctic</option>
+            <option value="domes">Domes</option>
+            <option value="design">Design</option>
+            <option value="vineyards">Vineyards</option>
+          </select>
+          <div class="invalid-feedback">Please select a valid category</div>
+        </div>
 
         <div class="mb-3">
           <label for="location" class="form-label">Location</label>

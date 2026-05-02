@@ -3,9 +3,57 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
+const DEFAULT_IMAGE_URL = "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=60";
+
+const ensureImage = (listing) => {
+  if (!listing.image || !listing.image.url) {
+    listing.image = listing.image || {};
+    listing.image.url = DEFAULT_IMAGE_URL;
+  }
+  return listing;
+};
+
 module.exports.index = async (req, res) => {
-  const allListings = await Listings.find({});
-  res.render("listings/index.ejs", { allListings });
+  let category = req.query.category;
+  let allListings;
+  const validCategories = ["trending", "rooms", "iconic-cities", "mountains", "castles", "amazing-pools", "camping", "farms", "arctic", "domes", "design", "vineyards"];
+  
+  if (category && validCategories.includes(category)) {
+    allListings = await Listings.find({ category: category });
+  } else {
+    allListings = await Listings.find({});
+    category = "all";
+  }
+  
+  allListings = allListings.map(ensureImage);
+  res.render("listings/index.ejs", { allListings, category });
+};
+
+module.exports.apiIndex = async (req, res) => {
+  let { category, minPrice, maxPrice, search } = req.query;
+  const filter = {};
+  const validCategories = ["trending", "rooms", "iconic-cities", "mountains", "castles", "amazing-pools", "camping", "farms", "arctic", "domes", "design", "vineyards"];
+  
+  if (category && category !== "all" && validCategories.includes(category)) {
+    filter.category = category;
+  }
+  
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = Number(minPrice);
+    if (maxPrice) filter.price.$lte = Number(maxPrice);
+  }
+  
+  if (search) {
+    filter.$or = [
+      { title: { $regex: search, $options: "i" } },
+      { location: { $regex: search, $options: "i" } }
+    ];
+  }
+  
+  let allListings = await Listings.find(filter);
+  allListings = allListings.map(ensureImage);
+  res.json(allListings);
 };
 
 module.exports.renderNewForm = (req, res) => {

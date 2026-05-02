@@ -1,95 +1,89 @@
 <% layout("/layouts/boilerplate") %>
-  
-  <style>
-    #filters {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-    }
 
-    .filter {
-      text-align: center;
-      margin-right: 2rem;
-      margin-top: 2rem;
-      opacity: 0.8;
-    }
+  <div id="filters-container" class="d-flex justify-content-between align-items-center">
+    <div id="categories-scroll">
+    <a href="/listings" class="filter-link">
+      <div class="filter <%= category === 'all' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-border-all"></i></div>
+        <p>All</p>
+      </div>
+    </a>
+    <a href="/listings?category=trending" class="filter-link">
+      <div class="filter <%= category === 'trending' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+    </a>
+    <a href="/listings?category=rooms" class="filter-link">
+      <div class="filter <%= category === 'rooms' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </div>
+    </a>
+    <a href="/listings?category=iconic-cities" class="filter-link">
+      <div class="filter <%= category === 'iconic-cities' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic Cities</p>
+      </div>
+    </a>
+    <a href="/listings?category=mountains" class="filter-link">
+      <div class="filter <%= category === 'mountains' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountain</p>
+      </div>
+    </a>
+    <a href="/listings?category=castles" class="filter-link">
+      <div class="filter <%= category === 'castles' ? 'active' : '' %>">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castles</p>
+      </div>
+    </a>
+    <a href="/listings?category=amazing-pools" class="filter-link">
+      <div class="filter <%= category === 'amazing-pools' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Amazing Pools</p>
+      </div>
+    </a>
+    <a href="/listings?category=camping" class="filter-link">
+      <div class="filter <%= category === 'camping' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-house-flag"></i></div>
+        <p>Camping</p>
+      </div>
+    </a>
+    <a href="/listings?category=farms" class="filter-link">
+      <div class="filter <%= category === 'farms' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-tractor"></i></div>
+        <p>Farms</p>
+      </div>
+    </a>
+    <a href="/listings?category=arctic" class="filter-link">
+      <div class="filter <%= category === 'arctic' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic</p>
+      </div>
+    </a>
+    <a href="/listings?category=domes" class="filter-link">
+      <div class="filter <%= category === 'domes' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-igloo"></i></div>
+        <p>Domes</p>
+      </div>
+    </a>
+    <a href="/listings?category=design" class="filter-link">
+      <div class="filter <%= category === 'design' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-building-columns"></i></div>
+        <p>Design</p>
+      </div>
+    </a>
+    <a href="/listings?category=vineyards" class="filter-link">
+      <div class="filter <%= category === 'vineyards' ? 'active' : '' %>">
+        <div><i class="fa-brands fa-vine"></i></div>
+        <p>Vineyards</p>
+      </div>
+    </a>
 
-    .filter:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
-    
-    .filter p {
-      font-size: 0.8rem;
-    }
-
-    .tax-info {
-      display: none;
-    }
-
-    .tax-toggle {
-      border: 1px solid black;
-      border-radius: 1rem;
-      height: 3.5rem;
-      padding: 1rem;
-      margin-left: 2rem;
-      display: flex;
-      align-items: center;
-    }
-
-  </style>
-
-  <div id="filters">
-    <div class="filter">
-      <div><i class="fa-solid fa-fire"></i></div>
-      <p>Trending</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-bed"></i></div>
-      <p>Rooms</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-mountain-city"></i></div>
-      <p>Iconic Cities</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-mountain"></i></div>
-      <p>Mountain</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-brands fa-fort-awesome"></i></div>
-      <p>Castles</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-person-swimming"></i></div>
-      <p>Amazing Pools</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-house-flag"></i></div>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-tractor"></i></div>
-      <p>Farms</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-snowflake"></i></div>
-      <p>Arctic</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-igloo"></i></div>
-      <p>Domes</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-building-columns"></i></div>
-      <p>Design</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-brands fa-vine"></i></div>
-      <p>Vineyards</p>
     </div>
 
-    <div class="tax-toggle">
+    <div class="tax-toggle ms-3 d-flex">
       <div class="form-check-reverse form-switch">
       <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
       <label class="form-check-label" for="switchCheckDefault">Default total after Taxes</label>
@@ -97,21 +91,41 @@
     </div>
 
   </div>
+  
+  <div id="extended-filters" class="d-flex align-items-center justify-content-center mb-4 gap-3 flex-wrap px-3">
+    <div class="input-group" style="width: auto;">
+      <span class="input-group-text">&#8377;</span>
+      <input type="number" id="minPrice" class="form-control" placeholder="Min Price">
+    </div>
+    <div class="input-group" style="width: auto;">
+      <span class="input-group-text">&#8377;</span>
+      <input type="number" id="maxPrice" class="form-control" placeholder="Max Price">
+    </div>
+    <div class="input-group" style="width: 300px;">
+      <input type="text" id="localSearch" class="form-control" placeholder="Search title or location...">
+    </div>
+    <button id="clearFilters" class="btn btn-outline-secondary">Clear Filters</button>
+  </div>
+
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3" >
     <% for(let listing of allListings) { %>
       <a href="/listings/<%= listing.id %>" class="listing-link">
         <div class="card col listing-card">
-          <img src="<%= (listing.image && listing.image.url) ? 
-        listing.image.url : listing.image %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
-          <div class="card-img-overlay"></div>
+          <div class="card-img-container">
+            <img src="<%= (listing.image && listing.image.url) ? listing.image.url : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=60' %>" 
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=60';" 
+                 class="card-img-top" alt="listing_image">
+            <div class="card-img-overlay"></div>
+          </div>
           <div class="card-body">
-            <p class="card-text">
-              <b>
-                <%= listing.title %>
-              </b> <br />
-              &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-              <i class="tax-info"> &nbsp; &nbsp;+18% GST</i> 
-            </p>
+            <div class="card-text">
+              <b><%= listing.title %></b>
+              <div class="card-location"><%= listing.location %>, <%= listing.country %></div>
+              <span class="price-display" data-original-price="<%= listing.price %>">
+                &#8377; <%= listing.price.toLocaleString("en-IN") %>
+              </span> / night
+              <i class="tax-info"> &nbsp; &nbsp;<small>(includes 18% GST)</small></i> 
+            </div>
           </div>
         </div>
       </a>
@@ -120,14 +134,181 @@
 
   <script>
     let taxSwitch = document.getElementById("switchCheckDefault");
-    taxSwitch.addEventListener("click",() => {
+    
+    const savedTaxState = localStorage.getItem("taxToggle") === "true";
+    if (savedTaxState) taxSwitch.checked = true;
+
+    const updatePrices = (isTaxIncluded) => {
       let taxInfo = document.getElementsByClassName("tax-info");
-      for (info of taxInfo) {
-        if (info.style.display != "inline") {
-          info.style.display = "inline";
+      let priceDisplays = document.getElementsByClassName("price-display");
+
+      for (let i = 0; i < taxInfo.length; i++) {
+        taxInfo[i].style.display = isTaxIncluded ? "inline" : "none";
+      }
+
+      for (let display of priceDisplays) {
+        const originalPrice = Number(display.dataset.originalPrice);
+        if (isNaN(originalPrice)) continue;
+
+        if (isTaxIncluded) {
+          const finalPrice = Math.round(originalPrice * 1.18);
+          display.innerHTML = `&#8377; ${finalPrice.toLocaleString("en-IN")}`;
         } else {
-          info.style.display = "none";
+          display.innerHTML = `&#8377; ${originalPrice.toLocaleString("en-IN")}`;
         }
       }
+    };
+
+    updatePrices(taxSwitch.checked);
+
+    taxSwitch.addEventListener("change", (e) => {
+      const isChecked = e.target.checked;
+      localStorage.setItem("taxToggle", isChecked);
+      updatePrices(isChecked);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterLinks = document.querySelectorAll('.filter-link');
+      const listingsContainer = document.querySelector('.row-cols-lg-3');
+      
+      const minPriceInput = document.getElementById('minPrice');
+      const maxPriceInput = document.getElementById('maxPrice');
+      const localSearchInput = document.getElementById('localSearch');
+      const clearFiltersBtn = document.getElementById('clearFilters');
+
+      let currentFilters = {
+        category: 'all',
+        minPrice: '',
+        maxPrice: '',
+        search: ''
+      };
+
+      const initialUrl = new URL(window.location.href);
+      if (initialUrl.searchParams.has('category')) {
+        currentFilters.category = initialUrl.searchParams.get('category');
+      }
+
+      const buildQueryString = () => {
+        const params = new URLSearchParams();
+        if (currentFilters.category !== 'all') params.append('category', currentFilters.category);
+        if (currentFilters.minPrice) params.append('minPrice', currentFilters.minPrice);
+        if (currentFilters.maxPrice) params.append('maxPrice', currentFilters.maxPrice);
+        if (currentFilters.search) params.append('search', currentFilters.search);
+        return params.toString();
+      };
+
+      const fetchListings = async () => {
+        listingsContainer.innerHTML = `
+          <div class="col-12 text-center my-5 w-100">
+            <div class="spinner-border text-danger" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading listings...</p>
+          </div>
+        `;
+
+        try {
+          const queryString = buildQueryString();
+          const response = await fetch(`/api/listings?${queryString}`);
+          const data = await response.json();
+
+          listingsContainer.innerHTML = '';
+          
+          if (data.length === 0) {
+            listingsContainer.innerHTML = '<div class="col-12 text-center mt-4 w-100"><p>No listings found matching your filters.</p></div>';
+            return;
+          }
+
+          const taxSwitchState = document.getElementById("switchCheckDefault").checked;
+
+          data.forEach(listing => {
+            const imageSrc = (listing.image && listing.image.url) ? listing.image.url : listing.image;
+            const taxDisplay = taxSwitchState ? "inline" : "none";
+            
+            let priceToDisplay = listing.price;
+            if (taxSwitchState && !isNaN(listing.price)) {
+              priceToDisplay = Math.round(listing.price * 1.18);
+            }
+            const formattedPrice = priceToDisplay.toLocaleString("en-IN");
+            
+            const cardHTML = `
+              <a href="/listings/${listing._id}" class="listing-link">
+                <div class="card col listing-card">
+                  <div class="card-img-container">
+                    <img src="${imageSrc || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=60'}" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=60';" 
+                         class="card-img-top" alt="listing_image">
+                    <div class="card-img-overlay"></div>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-text">
+                      <b>${listing.title}</b>
+                      <div class="card-location">${listing.location}, ${listing.country}</div>
+                      <span class="price-display" data-original-price="${listing.price}">
+                        &#8377; ${formattedPrice}
+                      </span> / night
+                      <i class="tax-info" style="display: ${taxDisplay};"> &nbsp; &nbsp;<small>(includes 18% GST)</small></i> 
+                    </div>
+                  </div>
+                </div>
+              </a>
+            `;
+            listingsContainer.innerHTML += cardHTML;
+          });
+        } catch (err) {
+          console.error("Failed to fetch listings:", err);
+        }
+      };
+
+      let timeoutId;
+      const debounceFetch = () => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fetchListings(), 300);
+      };
+
+      filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+          link.querySelector('.filter').classList.add('active');
+
+          const url = new URL(link.href, window.location.origin);
+          currentFilters.category = url.searchParams.get('category') || 'all';
+          fetchListings();
+        });
+      });
+
+      minPriceInput.addEventListener('input', (e) => {
+        currentFilters.minPrice = e.target.value;
+        debounceFetch();
+      });
+
+      maxPriceInput.addEventListener('input', (e) => {
+        currentFilters.maxPrice = e.target.value;
+        debounceFetch();
+      });
+
+      localSearchInput.addEventListener('input', (e) => {
+        currentFilters.search = e.target.value;
+        debounceFetch();
+      });
+
+      clearFiltersBtn.addEventListener('click', () => {
+        currentFilters = { category: 'all', minPrice: '', maxPrice: '', search: '' };
+        
+        minPriceInput.value = '';
+        maxPriceInput.value = '';
+        localSearchInput.value = '';
+        
+        document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+        const allCategoryLink = Array.from(filterLinks).find(link => {
+          const searchParams = new URL(link.href, window.location.origin).searchParams;
+          return !searchParams.has('category') || searchParams.get('category') === 'all';
+        });
+        if(allCategoryLink) allCategoryLink.querySelector('.filter').classList.add('active');
+        else document.querySelector('.filter').classList.add('active');
+
+        fetchListings();
+      });
     });
   </script>

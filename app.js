@@ -99,6 +99,11 @@ app.use((req, res, next) => {
 // });
 
 
+const wrapAsync = require("./utils/wrapAsync.js");
+const listingController = require("./controllers/listings.js");
+
+app.get("/api/listings", wrapAsync(listingController.apiIndex));
+
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);

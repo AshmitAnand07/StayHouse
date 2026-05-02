@@ -1,100 +1,201 @@
-# Airbnb-Inspired Full-Stack Web Application 🚀
+# 🏡 StayHouse — Full Stack Property Listing Platform
+
+🚀 **Live Demo:** https://stayhouse-1.onrender.com
+
+StayHouse is a full-stack web application that allows users to explore, create, and manage property listings — similar to platforms like Airbnb. It is designed with a strong focus on backend architecture, authentication, and real-world CRUD operations.
+
 ---
 
-## Table of Contents
+## 🌐 Live Preview
 
--   [Project Overview](#project-overview)
--   [Technologies & Packages Used](#technologies--packages-used)
--   [Key Features](#key-features)
--   [Challenges & Solutions](#challenges--solutions)
--   [Special Thanks](#special-thanks)
--   [Author](#author)
--   [Project Link](#project-link)
--   [Thank You](#thank-you)
+👉 Experience the app here:
+**https://stayhouse-1.onrender.com**
 
+---
 
-## Project Overview
+## 🧠 Key Features
 
-Excited to share my journey of developing a feature-rich full-stack web application inspired by Airbnb. The project is built using MongoDB, Express.js, and Node.js.
+### 🔐 Authentication & Authorization
 
-## Technologies & Packages Used
+* User signup & login system
+* Secure password handling
+* Route protection using middleware
+* Authorization checks (only owners can edit/delete)
 
-### Backend
+---
 
--   **MongoDB**: NoSQL database for flexible and scalable data storage.
--   **Express.js**: Web application framework for Node.js, providing robust features for web and mobile applications.
--   **Node.js**: JavaScript runtime for server-side development.
+### 🏡 Listings (CRUD System)
 
-### Authentication
+* Create new property listings
+* Read & display all listings
+* Update listing details
+* Delete listings securely
 
--   **Passport.js**: Middleware for user authentication, supporting various strategies.
--   **Dotenv**: Environment variable management for secure configuration.
+---
 
-### Image Storage
+### ⭐ Reviews System
 
--   **Cloudinary**: Cloud-based image and video management solution.
+* Add reviews to listings
+* Delete reviews with authorization
+* Relational data handling (users ↔ listings ↔ reviews)
 
-### Maps
+---
 
--   **Leaflet + OpenStreetMap**: Platform for custom maps and location-based experiences.
+### 📍 Map Integration
 
-### Frontend
+* Interactive maps using external APIs
+* Dynamic location rendering
 
--   **EJS**: Embedded JavaScript templates for dynamic content rendering.
+---
 
-### Session Management
+### 🖼️ Image Upload System
 
--   **Connect Flash**: Middleware for flash messages.
--   **Connect Mongo**: MongoDB session store for Express.js.
--   **Cookie Parser**: Middleware for parsing cookies.
+* Cloud-based image storage
+* Optimized media handling
 
-### Validation
+---
 
--   **Joi**: Library for data validation.
+### ⚡ Flash Messages & UX
 
-### Object Modeling
+* Real-time success & error notifications
+* Improved user experience
 
--   **Mongoose**: MongoDB object modeling for Node.js.
+---
 
-### File Uploads
+## 🛠️ Tech Stack
 
--   **Multer**: Middleware for handling file uploads.
+### 🌐 Frontend
 
-### Social Authentication
+* HTML5
+* CSS3
+* EJS
 
--   **Passport Local**: Local authentication strategy.
--   **Passport Facebook**: Facebook authentication strategy.
--   **Passport Google OAuth20**: Google OAuth2.0 authentication strategy.
--   **Passport Local Mongoose**: Mongoose-specific authentication strategy.
-    Authentication
+---
 
-## Key Features
+### ⚙️ Backend
 
--   **User Authentication:** Login, Logout, and User Profile Section
--   **CRUD Operations:** Add, Edit, and Delete Listings
--   **Review System:** Add and Delete Reviews
--   **Account Management:** Update User Account and Password
--   **User Data Security:** Password Hashing and Encryption
--   **Interactive Maps:** Leveraging Mapbox for Location Visualization
--   **Login with Google:** Authenticate with your Google account for a seamless experience
--   **Login with Facebook:** Easily log in using your Facebook credentials
--   **Login with Email:** Traditional email login for user convenience
+* Node.js
+* Express.js
 
-## Challenges & Solutions
+---
 
-Encountered challenges, especially with data handling, but implemented efficient solutions. Overcame scalability issues with a well-architected backend.
+### 🗄️ Database
 
-## Special Thanks
+* MongoDB
+* Mongoose
 
-A heartfelt thank you to Shradha Khapra didi and AMAN DHATTARWAL bhaiya at #ApnaCollege for their invaluable support and collaboration. As mentors and teachers, your guidance has been instrumental in shaping the success of this project. Your dedication to fostering learning and innovation has made a lasting impact, and I'm grateful for the opportunity to learn and grow under your mentorship.
+---
 
-## Author
+### 🔐 Authentication
 
-Ashmit Anand \
-Email: ashmit.akul07@gmail.com \
-LinkedIn : www.linkedin.com/in/ashmit-anand-704898256/
+* Passport.js (Local Strategy)
+* Express Session
 
-## Thank You
+---
 
-Thank you for exploring Airbnb! Your feedback is valuable. If you have any suggestions or thoughts, feel free to share them with us. 😊
+### ☁️ Cloud & APIs
 
+* Cloudinary (Image Storage)
+* Map API (Location Services)
+
+---
+
+### 📦 Libraries & Tools
+
+* Method-Override
+* Connect-Flash
+* Joi (Validation)
+
+---
+
+## 🏗️ Project Architecture (MVC)
+
+```bash
+StayHouse/
+│
+├── models/        → Database schemas  
+├── views/         → EJS templates  
+├── controllers/   → Business logic  
+├── routes/        → Route handling  
+├── public/        → Static files  
+├── middleware.js  → Custom middleware  
+├── app.js         → Entry point  
+```
+
+---
+
+## 🔄 Application Flow
+
+1. User signs up / logs in
+2. Authenticated users can create listings & reviews
+3. Data is stored in MongoDB
+4. Images are uploaded to Cloudinary
+5. Maps display listing locations
+6. Authorization ensures secure actions
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the repo
+
+```bash
+git clone https://github.com/AshmitAnand07/StayHouse.git
+cd StayHouse
+```
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Create `.env` file
+
+```env
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_KEY=your_key
+CLOUDINARY_SECRET=your_secret
+DB_URL=your_mongodb_url
+SESSION_SECRET=your_secret
+```
+
+### 4️⃣ Run project
+
+```bash
+node app.js
+```
+
+---
+
+## 🎯 Highlights
+
+* Full-stack production-style project
+* Secure authentication & authorization
+* Clean MVC architecture
+* Real-world CRUD operations
+* Cloud integration
+
+---
+
+## 🚀 Future Enhancements
+
+* 🔍 Search & filters
+* ❤️ Wishlist feature
+* 💬 Real-time chat
+* 📱 Mobile responsiveness
+* 🌍 Advanced deployment scaling
+
+---
+
+## 👨‍💻 Author
+
+**Ashmit Anand**
+
+* Full Stack Developer (AI/ML Enthusiast)
+
+---
+
+## ⭐ Support
+
+If you found this project helpful, consider giving it a ⭐ on GitHub!

@@ -51,7 +51,7 @@ async function seedReviews() {
                 await User.register(newUser, "password123");
             }
         }
-        
+
         let users = await User.find({});
         console.log(`${users.length} users ready.`);
 
@@ -71,8 +71,8 @@ async function seedReviews() {
 
         for (let listing of listings) {
             // Randomly decide 2 or 3 reviews
-            const numReviews = Math.floor(Math.random() * 2) + 2; 
-            
+            const numReviews = Math.floor(Math.random() * 2) + 2;
+
             for (let i = 0; i < numReviews; i++) {
                 const randomUser = users[Math.floor(Math.random() * users.length)];
                 const randomComment = comments[Math.floor(Math.random() * comments.length)];

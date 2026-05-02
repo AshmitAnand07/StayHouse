@@ -1,6 +1,6 @@
 # 🏡 StayHouse — Full Stack Property Listing Platform
 
-🚀 **Live Demo:** https://stayhouse-1.onrender.com
+🚀 **Live Demo:** https://stayhouse-1.onrender.com/listings
 
 StayHouse is a full-stack web application that allows users to explore, create, and manage property listings — similar to platforms like Airbnb. It is designed with a strong focus on backend architecture, authentication, and real-world CRUD operations.
 
